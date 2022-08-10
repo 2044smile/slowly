@@ -1,15 +1,13 @@
-from api.models.country import Country
 from django.db import models
 
-from api.models import BaseModel
+from api.models import BaseModel, Country
 
 
 class University(BaseModel):
     county = models.ForeignKey(
-        "Country", 
+        Country,
         related_name="country", 
-        on_delete=models.CASCADE, 
-        db_column="country_id"
+        on_delete=models.CASCADE,
     )
     webpage = models.CharField(
         max_length=255,
@@ -26,18 +24,20 @@ class University(BaseModel):
 
 class UniversityPreference(BaseModel):
     university = models.ForeignKey(
-        "University", 
+        University,
         related_name="university_preference", 
-        on_delete=models.CASCADE, 
-        db_column="university_preference_id"
+        on_delete=models.CASCADE,
     )
     user_id = models.IntegerField()
-    deleted_at = models.models.DateTimeField()
+    deleted_at = models.DateTimeField()
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["user_id", "university"],
+                fields=["user_id", "University"],
                 name="UC"
             )
         ]
+
+    class Meta:
+        abstract = False

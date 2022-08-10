@@ -3,7 +3,7 @@ from django.db import models
 from api.models import BaseModel
 
 
-class Country(BaseModel):
+class Country(models.Model):
     code = models.CharField(
         max_length=2,
         blank=True,
@@ -19,3 +19,6 @@ class Country(BaseModel):
 
     def __str__(self):
         return self.code
+
+    class Meta:
+        abstract = False
