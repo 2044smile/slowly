@@ -1,5 +1,7 @@
 # Byte-compiled / optimized / DLL files
+config/secrets.json
 .idea
+
 __pycache__/
 *.py[cod]
 *$py.class
