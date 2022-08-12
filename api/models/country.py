@@ -16,6 +16,9 @@ class Country(models.Model):
         null=True,
         help_text="국가 영문 이름"
     )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
 
     def __str__(self):
         return self.code
