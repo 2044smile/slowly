@@ -3,8 +3,8 @@ from django.db import models
 from api.models import BaseModel, Country
 
 
-class University(BaseModel):
-    county = models.ForeignKey(
+class University(models.Model):
+    country = models.ForeignKey(
         Country,
         related_name="country", 
         on_delete=models.CASCADE,
@@ -19,6 +19,9 @@ class University(BaseModel):
         max_length=255,
         unique=True,
         help_text="대학교 이름"
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
     )
 
 
