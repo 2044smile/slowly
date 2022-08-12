@@ -85,7 +85,7 @@ def crawling_country(self):
         raise TypeError("이미 데이터가 존재합니다.")
 
     for d in data:
-        if d.get("alpha_two_code") in university:
+        if d.get("name") in university:
             Country.objects.create(
                 name=d.get("name", ""),
                 code=d.get("alpha_two_code", "")
@@ -102,10 +102,13 @@ def crawling_university(self):
         raise TypeError("이미 데이터가 존재합니다.")
 
     for d in data:
-        University.objects.create(
-            name=d.get("name", ""),
-            county=Country.objects.get("alpha_two_code", ""),
-            webpage=d.get("web_pages", None)
-        )
+        if d.get("name") in university:
+            University.objects.create(
+                name=d.get("name", ""),
+                country=Country.objects.get(pk=d.get("alpha_two_code")),
+                webpage=d.get("web_pages", None)
+            )
+        else:
+            continue
 
     return JsonResponse({"result": "OK"})
