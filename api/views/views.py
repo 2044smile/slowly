@@ -104,9 +104,9 @@ def crawling_university(self):
     for d in data:
         if d.get("name") in university:
             University.objects.create(
-                name=d.get("name", ""),
-                country=Country.objects.get(pk=d.get("alpha_two_code")),
-                webpage=d.get("web_pages", None)
+                country=Country.objects.get(name=d.get("name")),
+                webpage=d.get("web_pages", ""),
+                name=d.get("name", "")
             )
         else:
             continue
