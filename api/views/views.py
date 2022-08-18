@@ -103,8 +103,6 @@ def crawling_university(self):
         raise TypeError("이미 데이터가 존재합니다.")
 
     for d in data:
-        # import pdb
-        # pdb.set_trace()
         if d.get("name") in university:
             University.objects.create(
                 country=Country.objects.get(name=d.get("name")),
