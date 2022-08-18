@@ -1,5 +1,6 @@
 import json
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 import requests
 
 from api.models import Country, University
@@ -12,7 +13,7 @@ university = ('1 December University of Alba Iulia', '42 US', 'Abilene Christian
               'Albion College', 'Alfred University', 'Allegheny College', 'Allentown College of Saint Francis de Sales',
               'Alliant International University', 'Alma College', 'Alverno College', 'Ambassador University',
               'American Coastline University', 'American International College', 'American Public University System',
-              'American University', 'Amherst College', 'Andrews University', 'Angelo State University',
+              'Amherst College', 'Andrews University', 'Angelo State University',
               'Anne Arundel Community College', 'Antioch New England', 'Antioch University',
               'Antioch University - Los Angeles', 'Antioch University - Seattle', 'Appalachian State University',
               'Aquinas College', 'Arcadia College', 'Arizona State University', 'Arizona Western College',
@@ -73,7 +74,7 @@ university = ('1 December University of Alba Iulia', '42 US', 'Abilene Christian
               'Utica College',
               'Valencia College', 'Wagner College', 'Wake Forest Baptist Health', 'Washington &amp; Jefferson College',
               'West Virginia Wesleyan College', 'Western New England University', 'Wilmington University',
-              'Wisconsin Lutheran College', 'Xavier University', 'YTI Career Institute',
+              'Wisconsin Lutheran College', 'YTI Career Institute',
               'Yosemite Community College District',
               'Young Harris College', 'Danville Community College')
 
@@ -102,6 +103,8 @@ def crawling_university(self):
         raise TypeError("이미 데이터가 존재합니다.")
 
     for d in data:
+        # import pdb
+        # pdb.set_trace()
         if d.get("name") in university:
             University.objects.create(
                 country=Country.objects.get(name=d.get("name")),
