@@ -9,3 +9,4 @@
 - python manage.py runserver --settings=config.settings.prod
 
 ### Web Crawling
+- postgres
