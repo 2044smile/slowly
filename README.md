@@ -10,3 +10,5 @@
 
 ### Web Crawling
 - use postgres
+- Country
+- University
