@@ -28,3 +28,6 @@
 - Category.objects.get(id=1)
 - Category.objects.get(id=1).subcategory.get(id=2)
 - Category.objects.get(id=1).subcategory.get(id=2).product.get(id=1)
+
+### select_related vs prefetch_related
+- https://docs.djangoproject.com/en/1.11/ref/models/querysets/#select-related
