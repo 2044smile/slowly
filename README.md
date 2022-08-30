@@ -31,3 +31,4 @@
 
 ### select_related vs prefetch_related
 - https://docs.djangoproject.com/en/4.0/ref/models/querysets/#select-related
+- https://blog.myungseokang.dev/posts/django-query-optimization/
